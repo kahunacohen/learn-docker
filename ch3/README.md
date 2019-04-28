@@ -1,10 +1,11 @@
 # Chapter 3
 
 ## Running a container
-`docker container run` either runs a cached container or fetches and then runs. Pass `-d` for dameon.
+* `docker container run {NAME}` either runs a cached container or fetches and then runs. Pass `-d` for dameon.
+* Pass `--name` option to name the container.
 
 ## Exec into a container
-`docker container exec -i -t {NAME}
+`docker container exec -i -t {NAME}`
 
 ## Attaching to a running container
 
