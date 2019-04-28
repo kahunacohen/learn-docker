@@ -1,4 +1,4 @@
-# Chapter 3
+# Chapter 3: Working with Containers
 
 ## Running a container
 * `docker container run {NAME}` either runs a cached container or fetches and then runs. Pass `-d` for dameon.
