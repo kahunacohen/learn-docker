@@ -15,3 +15,6 @@ This creates a named "random" container based off of alpine and runs as a demeon
 attach to it and see output from terminal like this:
 
 `docker container attach random`.
+
+## Logs
+`docker container logs {NAME}` gets you all logs from a container.
