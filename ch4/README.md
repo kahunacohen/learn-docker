@@ -7,9 +7,9 @@
 Run a base container, exec into it, add files etc. and commit. To see history of how it was
 built run `docker image history`.
 
-# Dockerfile
+### Dockerfile
 
-Use a Dockerfile to declaritively describe an image.
+Use a Dockerfile to declaritively describe an image. Usually we do this way.
 
 ## Building an Image
 1. Create an image with `docker image build -t {NAME} .` when a Dockerfile is in the current directory.
