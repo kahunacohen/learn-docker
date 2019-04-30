@@ -28,9 +28,9 @@ FROM alpine:3.7 AS build
 # Install tools for build etc. maybe apk for building c++ apps etc.
 # Compile source code C++ hello world program into app/bin/hello etc.
 
-FROM alpine:3.7
-COPY  --from=build app/bin/hello app/hello
-CMD app/hello
+FROM alpine:3.7 # This is the "Real" build.
+COPY  --from=build app/bin/hello app/hello # Copy binary from aliased build
+CMD app/hello # Run the binary.
 ```
 
 This results in an image with just the final binary.
