@@ -34,3 +34,9 @@ CMD app/hello # Run the binary.
 ```
 
 This results in an image with just the final binary.
+
+## Dockerfile Best Practices
+
+1. Use `.dockerignore` file to exclude unnecessary files/folders etc. from the image.
+1. Order individual commands smartly. Every cmd in docker is a new layer. When a higher layer changes, 
+subsequent layers have to be rebuilt. So make sure anything expensive (e.g. npm install) only happens after something that doesn't change much. E.g. instead of copying all app data, copy just package.json, then run npm install.
