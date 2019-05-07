@@ -68,3 +68,19 @@ CMD ["npm", "start"]
 ```
 
 Now when rebulding an image npm install will only change when package.json changes, which isn't so often. 
+
+### Keep Layers to a Minimum
+Each command in a Dockerfile is another image layer, so the easiest way to keep layers down is to combine
+commands. E.g.: 
+
+```
+RUN apt-get update
+RUN apt-get install -y ca=certificate
+```
+
+is better as:
+
+```
+RUN apt-get update && apt-get install -y ca=certificate
+```
+
