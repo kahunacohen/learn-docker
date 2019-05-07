@@ -37,6 +37,34 @@ This results in an image with just the final binary.
 
 ## Dockerfile Best Practices
 
-1. Use `.dockerignore` file to exclude unnecessary files/folders etc. from the image.
-1. Order individual commands smartly. Every cmd in docker is a new layer. When a higher layer changes, 
-subsequent layers have to be rebuilt. So make sure anything expensive (e.g. npm install) only happens after something that doesn't change much. E.g. instead of copying all app data, copy just package.json, then run npm install.
+### .dockerignore
+
+Use `.dockerignore` file to exclude unnecessary files/folders etc. from the image.
+
+### Order Lines to Take Advantage of Caching
+Order individual commands smartly. Every cmd in docker is a new layer. When a higher layer changes, 
+subsequent layers have to be rebuilt. So make sure anything expensive (e.g. npm install) only happens after something that doesn't change much. For example consider this Dockerfile:
+
+```
+FROM node:9.4
+RUN mkdir -p /app
+WORKDIR /app
+COPY . /app
+RUN npm install
+CMD ["npm", "start"]
+```
+
+Here, the app code changes all the time...everytime the developer changes source code. That means that 
+everytime app code changes, npm install has to be run and that's expensive. So this is smarter:
+
+```
+FROM node:9.4
+RUN mkdir -p /app
+WORKDIR /app
+COPY ./package.json /app
+RUN npm install
+COPY . /app
+CMD ["npm", "start"]
+```
+
+Now when rebulding an image npm install will only change when package.json changes, which isn't so often. 
