@@ -84,3 +84,10 @@ is better as:
 RUN apt-get update && apt-get install -y ca=certificate
 ```
 
+### Use Multi-stage Builds
+
+See section above.
+
+## Saving & Loading Images
+
+
