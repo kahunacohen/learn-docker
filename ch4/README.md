@@ -90,6 +90,36 @@ RUN apt-get update && apt-get install -y ca=certificate
 
 See section above.
 
-## Saving & Loading Images
+## Sharing & Shipping Images
+
+### Tagging an Image
+To share we must give it a globally unique name. Form of name:
+
+```
+{registry-url}/{user-or-org}/{name}:{tag}
+```
 
 
+## Official Images
+Some important images are sponsered by Docker and officially maintained. These tend to be base images like Linux distros etc.
+
+## Pushing Images to a Registry
+
+First we need to tag (name) our image:
+
+```
+docker image tag {source-image} {fully-qualified-tag}
+# E.g. dokcker image tag alpine:latest kahunacohen/my-alpine:1.0
+```
+
+Then we need to login:
+
+```
+docker login -u ... -p ...
+```
+
+Then push:
+
+```
+docker image push kahunacohen/my-alpine:1.0
+```
