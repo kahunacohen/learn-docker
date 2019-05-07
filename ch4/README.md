@@ -18,7 +18,8 @@ Import or load from a tarbar of an existing image using `docker image load` and 
 E.g.: `docker image build -t my-centos .`, uses centos as a base and installs packages as per Dockerfile.
 `-t` is for tag.
 2. Run it: `docker container run -d --name my-centos my-centos`
-3. Exec into it: 
+3. Exec into it: `docker exec -it CONTAINER COMMAND [ARG...]`
+
 
 ## Multi-stage Builds
 Sometimes we need tools in order to produce artifacts that we use in the container, but we don't need those
