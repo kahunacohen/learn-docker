@@ -1,6 +1,6 @@
 # Chapter 4: Creating & Managing Container Images
 
-## Ways of Creating images 
+## Ways of Creating images
 
 ### Interactive
 
@@ -8,17 +8,19 @@ Run a base container, exec into it, add files etc. and commit. To see history of
 built run `docker image history`.
 
 ### Dockerfile
+Use a manifest. This is how it's usually done.
 
-Use a Dockerfile to declaritively describe an image. Usually we do this way.
+### Importing & Loading From File
+Import or load from a tarbar of an existing image using `docker image load` and `docker image save`.
 
-#### Building an Image
+## Building an Image
 1. Create an image with `docker image build -t {NAME} .` when a Dockerfile is in the current directory.
 E.g.: `docker image build -t my-centos .`, uses centos as a base and installs packages as per Dockerfile.
 `-t` is for tag.
 2. Run it: `docker container run -d --name my-centos my-centos`
 3. Exec into it: 
 
-#### Multi-stage Builds
+## Multi-stage Builds
 Sometimes we need tools in order to produce artifacts that we use in the container, but we don't need those
 tools for the final container. The extra tools just take up space and make the image too large. In this case we can
 use multistep builds by using aliases, and copying artifacts in to final stage. E.g. Dockerfile:
@@ -35,13 +37,13 @@ CMD app/hello # Run the binary.
 
 This results in an image with just the final binary.
 
-#### Dockerfile Best Practices
+## Dockerfile Best Practices
 
-###### .dockerignore
+### .dockerignore
 
 Use `.dockerignore` file to exclude unnecessary files/folders etc. from the image.
 
-###### Order Lines to Take Advantage of Caching
+### Order Lines to Take Advantage of Caching
 Order individual commands smartly. Every cmd in docker is a new layer. When a higher layer changes, 
 subsequent layers have to be rebuilt. So make sure anything expensive (e.g. npm install) only happens after something that doesn't change much. For example consider this Dockerfile:
 
@@ -69,7 +71,7 @@ CMD ["npm", "start"]
 
 Now when rebulding an image npm install will only change when package.json changes, which isn't so often. 
 
-###### Keep Layers to a Minimum
+### Keep Layers to a Minimum
 Each command in a Dockerfile is another image layer, so the easiest way to keep layers down is to combine
 commands. E.g.: 
 
@@ -84,7 +86,7 @@ is better as:
 RUN apt-get update && apt-get install -y ca=certificate
 ```
 
-###### Use Multi-stage Builds
+### Use Multi-stage Builds
 
 See section above.
 
