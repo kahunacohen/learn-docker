@@ -24,3 +24,30 @@ docker container run --name test -it -v my-data:/data alpine:latest
 
 This command runs a container called `test` based on `alpine:latest`, mounting the volume we just
 created called `my-data` to the `/data` directory in the container.
+
+## Removing Volumes
+To remove a volume:
+
+```
+docker volume rm {volume_name}
+```
+
+This is a dangerous command because it deletes any data associated with the volume.
+
+## Sharing Data Between Containers
+To share data between containers we can mount a volume to multiple containers. To avoid race conditions
+we want to make sure only one container has write access--the rest should be readonly. To mount a container as readonly.
+
+Here's the writer:
+
+```
+docker container run -it --name writer -v shared-data:/data alpine /bin/sh
+```
+
+If we create a file in this container, we can read it thus:
+
+```
+docker container run -it --name reader -v shared-data:/app/data:ro ubantu:17.04 /bin/bash
+```
+
+We will get an error if we try to exec into reader and create a file in /app/data.
