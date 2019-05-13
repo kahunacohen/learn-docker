@@ -51,3 +51,10 @@ docker container run -it --name reader -v shared-data:/app/data:ro ubantu:17.04 
 ```
 
 We will get an error if we try to exec into reader and create a file in /app/data.
+
+## Using Host Volumes
+When developing apps we might want to mount a volume that maps to an actual directory on our host machine. For example if on our host machine we are developing an app on `/Users/acohen/projects/my-app`, we might run a container like this:
+
+```
+docker container run -rm -it -v /Users/acohen/projects/my-app:/my-app alpine:latest /bin/bash
+```
