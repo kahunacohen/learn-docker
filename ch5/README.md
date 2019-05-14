@@ -58,3 +58,28 @@ When developing apps we might want to mount a volume that maps to an actual dire
 ```
 docker container run -rm -it -v /Users/acohen/projects/my-app:/my-app alpine:latest /bin/bash
 ```
+
+## Defining Volumes in Images
+You can set volumes in your Dockerfile with a `VOLUME` line. E.g.:
+
+```
+VOLUME {PATH}
+VOLUME {COMMA SEPARATED PATHS}
+VOLUME {ARRAY OF PATHS}
+```
+
+So, for example, the standard MongoDB image defines volumes where it will store data in its Dockerfile. We can see this by
+doing:
+
+```
+docker image pull mongo:3.7
+docker image inspect \
+--format='{{json .ContainerConfig.Volumes}}' \
+mongo:3.7 | jq
+
+{
+  "/data/configdb": {},
+  "/data/db": {}
+}
+```
+
