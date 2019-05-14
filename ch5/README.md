@@ -68,7 +68,7 @@ VOLUME {COMMA SEPARATED PATHS}
 VOLUME {ARRAY OF PATHS}
 ```
 
-So, for example, the standard MongoDB image defines volumes where it will store data in its Dockerfile. We can see this by
+So, for example, the standard MongoDB image defines in its Dockerfile volumes where it will store data. We can see this by
 doing:
 
 ```
@@ -83,3 +83,28 @@ mongo:3.7 | jq
 }
 ```
 
+## Docker Housekeeping
+Over time the docker hosts accumulates images, containers, volumes etc. which consumes system resources. We can use `docker system` to get more info about this kind of stuff.
+
+### Listing Resource Consumption
+`docker system df`. Adding the `-v` flag will give us more info.
+
+### Pruning Containers
+Pruning containers will remove containers that are not in running status. `docker container prune`. The `-f` flag will
+force the action without confirmation.
+
+### Pruning Images
+Why would we need to prune images? Because layers of images are immutable. When something changes, like source code, new layers are created, but the layers they replace become orphaned. `docker image prune`.
+
+### Pruning Volumes
+Docker won't let you prune volumes associated with a container. E.g.
+
+```
+docker volume prune
+```
+
+You can also label volumes, then prune according to label:
+
+```
+docker volume prune --filter 'label=demo'
+```
