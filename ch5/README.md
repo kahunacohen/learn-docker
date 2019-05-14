@@ -108,3 +108,5 @@ You can also label volumes, then prune according to label:
 ```
 docker volume prune --filter 'label=demo'
 ```
+
+You can label docker objects via Dockerfile `LABEL` command, or by passing the `--label` option to `create` commands.
