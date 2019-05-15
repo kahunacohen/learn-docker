@@ -8,3 +8,4 @@ Chapters 1, 2 are introductory.
 * Chapter 3: [Working with Containers](ch3/) 
 * Chapter 4: [Containing & Managing Container Images](ch4/) 
 * Chapter 5: [Data Volumes & System Management](ch5/) 
+* Chapter 6: [Distributed Application Architecture](ch6/) 
