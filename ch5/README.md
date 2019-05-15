@@ -110,3 +110,13 @@ docker volume prune --filter 'label=demo'
 ```
 
 You can label docker objects via Dockerfile `LABEL` command, or by passing the `--label` option to `create` commands.
+
+### Pruning Networks
+`docker network prune`
+
+### Pruning Everything
+`docker system prune`
+
+## Docker System Events
+Using `docker system events` with an optional `--format` option you can listen to docker events and output logs. This
+can be useful for other tools that may consume the output...e.g. CI.
