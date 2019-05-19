@@ -26,20 +26,37 @@ variables. But in a distributed system, where ideally the location of a service 
 an external authority whose sole job it is, is to track where services are at any given time. This is part of what something like orchestration tools such as Docker Swarm and Kubernetes do.
 
 ## Load Balancing
+An external service that equally distributes requests to container instances. Usually a round robin algorithm is used.
 
 ## Defensive Programming
+When working on distributed modular microsservice architectures we often rely on more external services. E.g. credit card validation, network calls out to APIs etc. We have to code to "expect the worst, hope for the best". There are several strategies.
 
 ### Retries
+After a failed call, caller should try again. If that fails it should wait an increasingly longer interval until max tries is
+reached, then either a) provide degraded service, or no service depending on context.
 
 ### Logging
+Apps should log all important events. Log events need to be categorized to be useful. Usually one of:
+
+* debug
+* warning
+* error
+* fatal
+
+Logs should be aggregated to a central location, not on one node.
 
 ### Error Handling
+Fail fast. Detect errors as early as possible and have the operation fail immediately. E.g. check input range etc. If not
+expected, fail immediately and log to `STDERR` for further processing.
 
-## Redundancy
+### Redundancy
+Critical parts of the system need to have multiple instances running so that the app as a whole has little chance of downtime.
 
-## Health Checks
+### Health Checks
+How does the router, orchestrator, load balancer know there's a problem to re-route to redunant instances? By implenting
+health checks. Basically this a simple way for such services to query services to ask "are you still there"?
 
-## Circuit Breaker Pattern
+### Circuit Breaker Pattern
 
 ## Running in Production
 
