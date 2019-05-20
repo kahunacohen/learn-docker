@@ -57,23 +57,39 @@ How does the router, orchestrator, load balancer know there's a problem to re-ro
 health checks. Basically this a simple way for such services to query services to ask "are you still there"?
 
 ### Circuit Breaker Pattern
+Protects a call to a service from taking down the whole system. E.g. we can wrap a protected service in a circuit breaker
+object that monitors for failures. If failures reach a certain threshold, the circuit breaker object will return with an error but stop the call from actually doing anything.
 
 ## Running in Production
+Running in production requires some more best practices beyond those outlined above.
 
-## Logging
+### Logging
+Because we can't debug running apps, we need to rely on logging even more than in dev. The flow through components, nodes and clusters can be very complex, so we need to make sure we log all important details, such as the component, the node, cluster, etc. Also, it's important that the logs are aggregated.
 
-## Tracing
+### Tracing
+Used to determine how a particular request is funneled and handled through the app. See above.
 
-## Monitoring
+### Monitoring
+Enables us to view big picture in live stream. Very popular in devops. See [influx](https://www.influxdata.com/) and [grafana](https://grafana.com/).
 
 ## Application Updates
+For services to be non-disruptive, we must really think about app updates.
 
 ### Rolling Updates
+Assuming we have distributed nodes, we update one component on one particular instance at a time, monitor it then move on to the next if all is OK.
 
 ### Blue-green Deployments
+Blue is the current version of an application service, green is the new one. We install the new version (green) on the prod system, but don't wire up the router to serve production traffic to it yet. We then execute smoke tests against green on the prod system, and when all is OK we configure the router to send traffic to it.
 
 ### Canary Releases
+Similar to blue-green deployments, but we start filtering a small percentage of traffic to green and monitor and increase the
+percentage slowly.
 
-### Irreversible Data Changes
+## Irreversible Data Changes
+One cannot deploy things like schema changes to a db and code at the same time. There are three steps:
 
-## Rollback
+1. roll out backward compatible schema and data change.
+2. If successful, roll out new code
+3. Clean up schema and remove backward compatibility
+
+### Rollback
