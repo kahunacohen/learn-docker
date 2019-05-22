@@ -18,3 +18,25 @@ setup, so make sure you design your architecture such that only services that ne
 attached to the same network.
 
 ### The Bridge Network
+Default type of network. Based on Linux bridge. There's as host-wide network, but it's recommended to create custom networks
+that isolate your services. The network allocates a range of IPS, which you can see by doing:
+
+```
+docker network inspect {network_name}
+```
+
+Under the `IPAM.subnet` key, you can see the range of IPs allocated. E.g. `172.17.0.0/16`.
+This is a range of IPs between `172.17.0.0.2` and ...`255`. Every time a container connects it will be given an 
+incrementally higher IP.
+
+
+To create a custom network:
+
+```
+docker network create --driver bridge . {network_name}
+```
+
+p. 143...
+
+
+
