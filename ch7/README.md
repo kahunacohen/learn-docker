@@ -51,6 +51,41 @@ docker container run --rm -it --network host alpine:latest /bin/sh
 
 If we then entered the container and ran `ip` we'd get the same information as if were were on the host and ran `ip`.
 
+## The null Network
+If you need to run a container that cannot be attached to any network it's advised to attach to the `none` network:
+
+```
+docker container run -rm --it --network none alpine:latest /bin/sh
+```
+
+## Port Management
+We've firewalled our containers, but we often need a way for the outside world to communicate with our containers. For
+example a web app's web server needs a way to listen to incoming requests from outside the container. For this we have to
+map a container's port to a port available from outside the container (the host). We need to wire up a port in the container's network to the network on the host.
+
+There are several ways of doing this:
+
+### Let Docker Choose an Available Port with `-P`
+
+```
+docker container run --name web -P -d nginx:alpine
+```
+
+This maps nginx port 80 in the container to a free port on the host. We can see which port is being used by doing:
+
+```
+docker container port web
+```
+
+### Map Port to Specific Port Number with `-p`
+Use `-p` to map internal port to host with `{host_port}:{container_port}`:
+
+```
+docker container run --name web -p 8080:80 -d nginx:alpine
+```
+
+This allows us to access the webserver running on `80` in the container on the host at `8080`.
+
 
 
 
