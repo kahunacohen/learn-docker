@@ -36,7 +36,21 @@ To create a custom network:
 docker network create --driver bridge . {network_name}
 ```
 
-p. 143...
+### More on Attaching Networks and Network Firewalls
+You use networks to firewall containers and define what can come in and out of the container. Set up multiple networks and
+selectively attach networks to containers to only communicate between containers that need to. You can also attach a container to multiple networks at once.
+
+## The Host Network
+Generally you don't want to attach containers to the docker host network as that's a security concern. But there are times
+you do. For example for debugging purposes or for app development. To attach to the host network, simply pass the `host`
+network name:
+
+```
+docker container run --rm -it --network host alpine:latest /bin/sh
+```
+
+If we then entered the container and ran `ip` we'd get the same information as if were were on the host and ran `ip`.
+
 
 
 
