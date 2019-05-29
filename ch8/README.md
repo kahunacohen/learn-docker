@@ -20,3 +20,7 @@ services:
     volumes:
       pets=data
 ```
+
+Some commands:
+ * `docker compose up`: starts the app.
+ * `docker-compose ps`: shows the services that make up an app and their current state.
