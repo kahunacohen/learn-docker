@@ -49,5 +49,40 @@ services:
   volumes:
     - [ets=data:/var/lib/postgresql/data
  volumes:
-   pets=data
+   pets-data
  ```
+ 
+ ### Building and Pushing an Application
+ 
+ 
+ We can also just build the images of our application by adding build information to `docker-compose.yml`:
+ 
+ ```
+version: "3.5"
+services:
+  web:
+    build: web
+    image: fundementalsofdocker/ch08-web:1.0
+    ports:
+      - 3000
+  db:
+    build: database
+    image: fundementalsofdocker/ch08-db:1.0
+  volumes:
+    - [ets=data:/var/lib/postgresql/data
+ volumes:
+   pets-data
+ ```
+ 
+ You might want to do this to push all images associated with an app to a remote hub.
+ 
+ To run:
+ 
+ ```
+ docker-compose -f docker-compose.yml build
+ docker login -u foo -p bar
+ docker-compose -f docker-compose.yml push
+ ```
+ 
+ This will push the two images to the docker hub account.
+ 
