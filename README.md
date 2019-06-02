@@ -11,3 +11,4 @@ Chapters 1, 2 are introductory.
 * Chapter 6: [Distributed Application Architecture](ch6/) 
 * Chapter 7: [Single-Host Networking](ch7/) 
 * Chapter 8: [Docker Compose](ch8/) 
+* Chapter 9: [Orchestrators](ch9/) 
