@@ -24,3 +24,30 @@ services:
 Some commands:
  * `docker compose up`: starts the app.
  * `docker-compose ps`: shows the services that make up an app and their current state.
+ * `docker-compose down`: Shuts down all the services.
+
+### Scaling a Service
+
+E.g. `docker-compose up --scale web=3`. This increases web service instances to 3, but we'll get an error because we are
+hard-coding the port to `3000`. Instead we can let Docker decide what port to use.
+
+```
+docker-compose down
+```
+
+Then, modify `docker-compose.yml`:
+
+```
+version: "3.5"
+services:
+  web:
+    image: fundementalsofdocker/ch08-web:1.0
+    ports:
+      - 3000
+  db:
+    image: fundementalsofdocker/ch08-db:1.0
+  volumes:
+    - [ets=data:/var/lib/postgresql/data
+ volumes:
+   pets=data
+ ```
