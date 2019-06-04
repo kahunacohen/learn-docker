@@ -1,2 +1,18 @@
 ## Chapter 9: Orchestrators 
 
+### Tasks of an Orchestrator
+
+### Rconcolling the Desired State
+Point of an orchestrator is to declaratively initialize and maintain a system's desired state. E.g. how many instances
+of a container to run, network attributes, ports etc. Once a system is up and running the orchestrator should continue to
+monitor the state and attempt to maintain it. So, for example, if an instance crashes and goes down the orchestrator should
+work to maintain the desired amount of containers based on the configuration.
+
+### Replicated and Global Services
+A replicated service is a service that's required to run in a specified number of instances, while a global
+service is a service that is supposed to run on each of the replicated services. Orchestrator's job, for example, is to work
+to ensure that there is at least one global service running on each replicated service.
+
+### Service Discovery
+It is the orchestrators job to be able to find sub-services. We don't explicitely tell app instances, for example, what url
+and port to find a specific instance of a RESTful API.
