@@ -32,3 +32,23 @@ Orchestrators manage how many instances of a service are up at any time dependin
 Orchestrators need to be able to take down and replace unhealthy containers. Beyond crashes, how the orchestrator
 determines health is up to the human managers of the system. To manage this, we can declaritvely define how to check
 health--usually via HTTP `GET` requests etc, but we can do more if needed.
+
+### Zero Downtime Deployments
+Now-a-days applications are expected to be updated without taking them offline. Also see: https://dev.to/mostlyjason/intro-to-deployment-strategies-blue-green-canary-and-more-3a3.
+
+#### Rolling Deployments
+The orchestrator replaces batches of instances, such that old and new instances co-exist. The orchestrator checks for misbehavior and replaces the next batch if things are OK. 
+If, not the orchestrator will roll back the misbehaving instances.
+
+#### Blue-Green Deployments
+This is another fail-safe process. In this method, two identical production environments work in parallel and work off the
+same backends. Blue is considered production, and green is the new version. Green is deployed but not routed to. Once
+checked for health, the load balancer routes to green and can be re-routed back to blue if problems crop up.
+
+Blue-green deployments rely on traffic routing. This can be done by updating DNS CNAMES for hosts. However, long TTL values can delay these changes. Alternatively, you can change the load balancer settings so the changes take effect immediately. Features like connection draining in ELB can be used to serve in-flight connections.
+
+#### Canary Releases
+Canary deployment is like blue-green, except it’s more risk-averse. Instead of switching from blue to green in one step, you use a phased approach.
+
+With canary deployment, you deploy a new application code in a small part of the production infrastructure. Once the application is signed off for release, only a few users are routed to it. This minimizes any impact.
+
