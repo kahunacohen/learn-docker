@@ -52,3 +52,28 @@ Canary deployment is like blue-green, except it’s more risk-averse. Instead of
 
 With canary deployment, you deploy a new application code in a small part of the production infrastructure. Once the application is signed off for release, only a few users are routed to it. This minimizes any impact.
 
+### Affinity & Location Awareness
+Some clusters may require specific hardware requirements. E.g. I.O. intensive services may need a fast solid state drive. An
+orchestrator has some way of expressing that a cluster of nodes's affinity for a particular hardware setup, or other requirement.
+
+Geo/location awareness refers to an orchestrator's ability to distrubute load across geographically labeled clusters, such
+as East, West, Central etc. This decreases the chance of outage due to a geographically specific event.
+
+### Security
+
+#### Secure Communication & Cryptographic Node Identity
+
+Only trusted nodes can join a cluster. Each node that joins the cluster gets a cryptographic node identity and all
+communication between nodes must be encrypted.
+
+Communication in a cluster can be separated into three types:
+
+1. **management**: used by cluster managers or masters to execute health checks, schedule instances etc.
+1. **control**: exchange important state information between all nodes of a cluster. E.g. updating local IP tables etc.
+1. **data**: application services communicate with each other and exchange data
+
+Normally, the orchestrator is primarally concerned with securing management and control planes. The data plane is usaally
+handled by the user, though orchestrators can faciliate that too.
+
+#### Secure Networks & Network Policies
+
