@@ -76,4 +76,28 @@ Normally, the orchestrator is primarally concerned with securing management and 
 handled by the user, though orchestrators can faciliate that too.
 
 #### Secure Networks & Network Policies
+We want controlled access among nodes on the same network to communicate and no way for outside traffic to hit any nodes
+in the app unless authorized. Two ways to do this:
+
+1. **Software-defined-network (SDN)**: groups application services together
+1. **Flat network**: One flat network and use network policies.
+
+#### Role-based Access Control (RBAC)
+To be enterprise-ready an orchestrator must have a way to grant group/role permissions to add nodes/clusters etc. For example,
+a typical enterprise might have a dev, qa, and prod groups with different users assigned to them. Grants are used for this.
+
+#### Secrets
+An app often needs to access sensitive data, such as API keys, SSH keys, passwords etc. An orchestrator stores such
+encrypted data in its cluster state database.
+
+#### Content Trust
+For added security we want to make sure only trusted images run in our clusters. The orchestrator achieves this by reading an
+image signature that's signed at the source then confirmed before allowing an image to run in the cluster.
+
+#### Reverse Uptime
+As of this writing, most orchestrators don't implenent this yet...but the idea is to regularly and at relatively short
+intervals (say once a day) tear down each node and replace it with a fresh node. That way if a hack gains access to a node
+he can only do damage for a day. In real life a hacker could disguise his identity and spend days wreaking havock if he has
+control of nodes.
+in its 
 
