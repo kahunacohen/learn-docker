@@ -2,7 +2,7 @@
 
 ### Tasks of an Orchestrator
 
-### Rconcolling the Desired State
+### Reconciling the Desired State
 Point of an orchestrator is to declaratively initialize and maintain a system's desired state. E.g. how many instances
 of a container to run, network attributes, ports etc. Once a system is up and running the orchestrator should continue to
 monitor the state and attempt to maintain it. So, for example, if an instance crashes and goes down the orchestrator should
