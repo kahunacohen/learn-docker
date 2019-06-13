@@ -12,3 +12,4 @@ Chapters 1, 2 are introductory.
 * Chapter 7: [Single-Host Networking](ch7/) 
 * Chapter 8: [Docker Compose](ch8/) 
 * Chapter 9: [Orchestrators](ch9/) 
+* Chapter 10: [Introduction to Docker Swarm](ch10/) 
