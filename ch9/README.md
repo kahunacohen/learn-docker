@@ -99,5 +99,35 @@ As of this writing, most orchestrators don't implenent this yet...but the idea i
 intervals (say once a day) tear down each node and replace it with a fresh node. That way if a hack gains access to a node
 he can only do damage for a day. In real life a hacker could disguise his identity and spend days wreaking havock if he has
 control of nodes.
-in its 
+
+### Introspection
+Orchestrators allow human operators to easily monitor system information such as CPU, memory, disk usage etc. Should
+available on a per-node basis or in an aggregated form.
+
+Orchestrators should also give us easy access to logs and allow us to exec into any container if we have proper permissions.
+
+The orchestrator should also allow us to easily trace requests because in a distributed system it's often challenging to
+understand how each request is handled.
+
+A graphical dashboard should also be made available to human operators showing the most critical sytem information.
+
+Finally the orchestrator should provide an API for external services to access system data.
+
+## Popular Orchestrators
+
+### Kubernetes
+The leader of the orchestrator space. Built by Google. It was designed with massive scability in mind. Cons include setup
+complexity etc.
+
+### Docker Swarm
+New versions are simple to setup and powerful.
+
+## Apache Mesos & Marathon
+Relatively little reach.
+
+## Amazon ECS
+Simple to use, but tightly coupled to AWS. Can't use it if you are not invested in that ecosystem.
+
+## Microsoft ACS
+Simple and easy to setup but must be bought into the MS Azure ecosytem. 
 
