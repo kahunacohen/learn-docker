@@ -113,21 +113,21 @@ A graphical dashboard should also be made available to human operators showing t
 
 Finally the orchestrator should provide an API for external services to access system data.
 
-## Popular Orchestrators
+### Popular Orchestrators
 
-### Kubernetes
+#### Kubernetes
 The leader of the orchestrator space. Built by Google. It was designed with massive scability in mind. Cons include setup
 complexity etc.
 
-### Docker Swarm
+#### Docker Swarm
 New versions are simple to setup and powerful.
 
-## Apache Mesos & Marathon
+#### Apache Mesos & Marathon
 Relatively little reach.
 
-## Amazon ECS
+#### Amazon ECS
 Simple to use, but tightly coupled to AWS. Can't use it if you are not invested in that ecosystem.
 
-## Microsoft ACS
+#### Microsoft ACS
 Simple and easy to setup but must be bought into the MS Azure ecosytem. 
 
