@@ -15,7 +15,7 @@ Managers become a leader by election. A majority of other managers must elect a 
 down for maintanance, or it malfunctions, a new leader must be elected and once the old manager is brought back online it
 becomes a follower. When a new leader is elected its state is synced with the other managers.
 
-A manager manages the swarm state in a high performance key-value store. The state includes things such as how many worker nodes are online, IP addresses, logs etc. Because the communication of managers is syncrounous, it's relatively slow and can 
+A manager manages the swarm state in a high performance key-value store. The state includes things such as how many worker nodes are online, IP addresses, logs etc. Because the communication of managers is synchronous, it's relatively slow and can 
 negatively affect swarm performance. Therefore, we keep the number of managers to a minumim. For example, one manager is
 recommended for dev, three for small to meduium sized production environments, and five only for very large apps.
 
