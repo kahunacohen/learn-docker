@@ -20,4 +20,12 @@ negatively affect swarm performance. Therefore, we keep the number of managers t
 recommended for dev, three for small to meduium sized production environments, and five only for very large apps.
 
 ### Swarm Workers
-p. 196
+Simply run tasks that managers assign them. They exchange mostly information about service discovery and routing, which
+containers are running etc. To ensure gossiping scales, they only communicate with three random neighbors.
+her 
+### Stacks, Services, and Tasks
+When dealing with swarms and orchestrators we are no longer thinking in terms of containers with well known names
+and IP addresses. This gets abstracted away. We are thinking in terms of clusters of hosts and we only care about having
+a desired state and if the swarm is reflecting that desired state. E.g. we don't care about which node a service runs but
+rather whether the desired number of replicas is always running on whateber nodes the swarm scheduler decides to put
+them on.
