@@ -29,3 +29,29 @@ and IP addresses. This gets abstracted away. We are thinking in terms of cluster
 a desired state and if the swarm is reflecting that desired state. E.g. we don't care about which node a service runs but
 rather whether the desired number of replicas is always running on whateber nodes the swarm scheduler decides to put
 them on.
+
+### Services
+A *swarm service* is a desired state. It's a manifest describing:
+
+* name of the service
+* image from which to create the service
+* num of replicas to run
+* network the container(s) are attached to
+* ports that should be mapped
+
+### Task
+A container is an instance that runs on a worker node, while a task is a description of the service as part of a swarm
+service.
+
+### Stack
+A stack is a collection of swarm services that are related, most probably because they are part of the same application.
+We declare a stack declaratively using yaml.
+
+## Multi Host Networking
+We discussed how nodes communicate with each other over a single host, now containers on different nodes  must communicate
+with each other. The Linux bridge networking model cannot do this, so it uses VXLAN. When a container tries to send
+a packet to another container in a different node the bridge network realizes that it can't find the target. Then
+each node participating in the overlay network receives a VXLAN Tunnel Endpoint object (VTEP). This intercepts
+the packet and wraps it in a header that allows the target to receive it.
+
+## Creating a Docker Swarm
