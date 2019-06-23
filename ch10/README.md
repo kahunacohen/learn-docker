@@ -55,3 +55,13 @@ each node participating in the overlay network receives a VXLAN Tunnel Endpoint 
 the packet and wraps it in a header that allows the target to receive it.
 
 ## Creating a Docker Swarm
+
+Run `docker swarm init` on a docker host. e.g. your local machine. Once run, your machine is now a swarm node and the leader
+of the managers. What this did:
+
+* created a root certification authority
+* created a key-value store that is used to store state of the whole swarm.
+
+`docker node ls` lists all the nodes in the swarm. At this point there's only one. To get more info on this node, we can do:
+
+`docker node inspect ID`.
