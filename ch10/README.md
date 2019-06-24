@@ -65,3 +65,7 @@ of the managers. What this did:
 `docker node ls` lists all the nodes in the swarm. At this point there's only one. To get more info on this node, we can do:
 
 `docker node inspect ID`.
+
+## Using Play with Docker (PWD) to Generate a Swarm
+You can experiment with docker swarm without working locally by going to 
+
