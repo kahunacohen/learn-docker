@@ -78,3 +78,5 @@ aws_access_key_id = xxx
 aws_secret_access_key = xxx
 ```
 
+WHERE I WAS. Created an IAM user for AWS and added creds in `~/.aws/configuration`.
+
