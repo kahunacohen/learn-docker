@@ -67,5 +67,14 @@ of the managers. What this did:
 `docker node inspect ID`.
 
 ## Using Play with Docker (PWD) to Generate a Swarm
-You can experiment with docker swarm without working locally by going to 
+You can experiment with docker swarm without working locally by going to  https://labs.play-with-docker.com/.
+
+## Creating a Docker Swarm in the Cloud
+We can create a swarm on the cloud using AWS. To get started, put your access key and secret access key in a `~/aws/configuration` file:
+
+```
+[default]
+aws_access_key_id = xxx
+aws_secret_access_key = xxx
+```
 
