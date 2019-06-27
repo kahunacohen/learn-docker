@@ -78,5 +78,6 @@ aws_access_key_id = xxx
 aws_secret_access_key = xxx
 ```
 
-WHERE I WAS. Created an IAM user for AWS and added creds in `~/.aws/configuration`.
+Rest of chapter describes how to set up a docker swarm in aws.
 
+Stuck on page 216, being able to curl node-1 instance in aws due to sg group settings.
